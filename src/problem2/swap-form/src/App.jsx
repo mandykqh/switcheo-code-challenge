@@ -1,14 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
+import CurrencyExchangeForm from './CurrencyExchangeForm'
+import { fetchData } from './utils/currencyData';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currencyData, setCurrencyData] = useState([]);
+  useEffect(() => {
+    // Fetch the data when the component mounts
+    fetchData()
+      .then(data => {
+        setCurrencyData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <>
-      <h1>Currency Swap</h1>
+      <CurrencyExchangeForm currencyData={currencyData} />
     </>
   )
 }
