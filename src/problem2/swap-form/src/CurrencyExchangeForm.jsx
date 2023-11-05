@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Select, Button, FormControl, FormLabel, Input, FormHelperText, Card, CardBody, Text } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, FormHelperText, Card, CardBody, Text } from '@chakra-ui/react'
+import { Select } from "chakra-react-select";
 
 
 const CurrencyExchangeForm = ({ currencyData }) => {
@@ -56,12 +57,14 @@ const CurrencyExchangeForm = ({ currencyData }) => {
                 <Select placeholder='Select option' onChange={(e) => {
                     setFromCurrency(e.target.value);
                     console.log(e.target.value);
-                }}>
-                    {currencyData.map((item, index) => (
+                }}
+                    options={currencyData.map((item) => ({ value: item.currency, label: item.currency }))}
+                >
+                    {/* {currencyData.map((item, index) => (
                         <option key={index} value={item.currency}>
                             {item.currency}
                         </option>
-                    ))}
+                    ))} */}
                 </Select>
                 <FormControl>
                     <FormLabel>You Send</FormLabel>
