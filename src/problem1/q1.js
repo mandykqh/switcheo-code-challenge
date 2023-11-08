@@ -15,15 +15,10 @@ var sum_to_n_b = function (n) {
 };
 
 var sum_to_n_c = function (n) {
+    function sum_to_n_c_iter(m, sum) {
+        return m <= 1 ?
+            m + sum :
+            sum_to_n_c_iter(m - 1, sum + m);
+    }
     return sum_to_n_c_iter(n, 0);
 };
-
-function sum_to_n_c_iter(n, sum) {
-    return n <= 1 ?
-        n + sum :
-        sum_to_n_c_iter(n - 1, sum + n);
-}
-
-// console.log(sum_to_n_a(-5));
-// console.log(sum_to_n_b(5));
-// console.log(sum_to_n_c(5));
