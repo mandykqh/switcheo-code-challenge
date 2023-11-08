@@ -1,0 +1,8 @@
+.select-input-token {
+    color: #1A3B4D;
+    width: max-content;
+}
+
+.select-input-value::placeholder {
+    color: rgba(26, 59, 77, 0.4);
+}
