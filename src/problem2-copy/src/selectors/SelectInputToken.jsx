@@ -17,9 +17,8 @@ const SelectInputToken = ({ currencyData, selectedToken, targetState }) => {
                 options={currencyData.map((item) => ({ value: item.currency, label: item.currency }))}
                 className='select-input-token'
                 styles={{
-                    control: (baseStyles, state) => ({
+                    control: (baseStyles) => ({
                         ...baseStyles,
-                        // backgroundColor: state.isFocused ? 'grey' : 'white',
                         borderColor: 'transparent',
                         borderRadius: '14px',
                         fontSize: '25px',

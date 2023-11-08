@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IconButton, Text, Box, Button, Flex, Spacer, VStack, Center } from '@chakra-ui/react'
-import { extendTheme } from '@chakra-ui/react'
+import { IconButton, Text, Box, Flex, Spacer, VStack, Center } from '@chakra-ui/react'
 import { fetchPriceData } from '../utils/pricesData';
 import SelectInputToken from '../selectors/SelectInputToken';
 import '../styles/styles.css'
@@ -16,7 +15,6 @@ const SwapPage = () => {
     const [sendToReceiveConversion, setSendToReceiveConversion] = useState(true);
 
     useEffect(() => {
-        // Fetch the data when the component mounts
         fetchPriceData()
             .then(data => {
                 setCurrencyData(data);
@@ -35,7 +33,7 @@ const SwapPage = () => {
         } else {
             handleToSendConversion();
         }
-    }, [fromValue, toValue]);
+    }, [fromValue, toValue, fromToken, toToken]);
 
     const handleTokenChange = (e, targetState) => {
         if (targetState === 'from') {
@@ -85,71 +83,8 @@ const SwapPage = () => {
         setSendToReceiveConversion(e);
     };
 
-    const theme = extendTheme({
-        textStyles: {
-            h1: {
-                // you can also use responsive styles
-                fontSize: ['48px', '72px'],
-                fontWeight: 'bold',
-                lineHeight: '110%',
-                letterSpacing: '-2%',
-            },
-            h2: {
-                fontSize: ['36px', '48px'],
-                fontWeight: 'semibold',
-                lineHeight: '110%',
-                letterSpacing: '-1%',
-            },
-        },
-    })
-
     return (
-        // <div>
-        //     <Box w='548px' m='9px' borderRadius={24} bgGradient='linear(to-r,#F6E2FF 0%, #CED2FF 15%, #F9FAFE 90%)'>
-        //         <Flex w='548px' px='20px' py='30px'>
-        //             <SelectInputToken currencyData={currencyData} selectedToken={(e) => {
-        //                 handleTokenChange(e, 'from');
-        //             }} />
-        //             <Spacer />
-        //             <Flex flexDirection='column'>
-        //                 <SelectInputValue value={fromValue} valueInput={(e) => {
-        //                     handleInputChange(e, 'from');
-        //                     handleToggleConversionType(true);
-        //                 }} />
-        //                 <Text textStyle='h2' ml='auto'>You Pay</Text>
-        //             </Flex>
-        //         </Flex>
-        //     </Box>
-        //     <IconButton
-        //         aria-label="Circular Icon"
-        //         icon={<ArrowDownIcon boxSize={6} color="rgba(26, 59, 77, 0.4)" />} // Replace 'AddIcon' with your desired icon component
-        //         borderRadius="full" // Sets the button to be circular
-        //         bg="#FAFAFA" // Background color
-        //         color="white" // Icon color
-        //         size="md" // You can adjust the size
-        //         zIndex={1} // Set a higher zIndex to overlay the button
-        //         position="absolute" // Position the button absolutely
-        //         top="50%" // Adjust the top position
-        //         transform="translateY(0%)" // Center vertically
-        //     />
-
-        //     <Box w='548px' m='9px' borderRadius={24} bgGradient='linear(to-l,#F6E2FF 0%, #CED2FF 15%, #F9FAFE 95%)'>
-        //         <Flex w='548px' px='20px' py='30px'>
-        //             <SelectInputToken currencyData={currencyData} selectedToken={(e) => {
-        //                 handleTokenChange(e, 'to');
-        //             }} />
-        //             <Spacer />
-        //             <Flex flexDirection='column'>
-        //                 <SelectInputValue ml='auto' value={toValue} valueInput={(e) => {
-        //                     handleInputChange(e, 'to');
-        //                     handleToggleConversionType(false);
-        //                 }} />
-        //                 <Text textStyle='h2' ml='auto'>You Receive</Text>
-        //             </Flex>
-        //         </Flex>
-        //     </Box>
-        // </div >
-        <Center minH="70vh">
+        <Center minH="80vh">
             <VStack spacing={4}>
                 <Text textStyle='h3' color='rgba(26, 59, 77, 0.4)'>Currency Swap</Text>
                 <Box w='548px' borderRadius={24} bgGradient='linear(to-r,#F6E2FF 0%, #CED2FF 15%, #F9FAFE 90%)'>
